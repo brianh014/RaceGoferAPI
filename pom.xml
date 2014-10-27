@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.racegofer</groupId>
-    <artifactId>APIServer</artifactId>
+    <artifactId>RaceGoferServer</artifactId>
     <version>0.1a</version>
     <packaging>war</packaging>
 
@@ -43,7 +43,7 @@
                 <configuration>
                     <url>http://racegofer.com:8080/manager/text</url>
                     <server>apiserver</server>
-                    <path>/mywebapp</path>
+                    <path>/api</path>
                 </configuration>
             </plugin>
         </plugins>
