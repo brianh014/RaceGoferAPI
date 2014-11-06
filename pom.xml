@@ -30,10 +30,32 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.33</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>4.1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>3.2.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>3.2.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>3.2.5.RELEASE</version>
+        </dependency>
+
+
     </dependencies>
 
     <properties>
-        <start-class>hello.Application</start-class>
+        <start-class>com.racegofer.web.Application</start-class>
     </properties>
 
     <build>

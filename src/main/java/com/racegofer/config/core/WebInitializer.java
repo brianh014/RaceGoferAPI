@@ -1,5 +1,6 @@
-package hello;
+package com.racegofer.config.core;
 
+import com.racegofer.web.Application;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 
