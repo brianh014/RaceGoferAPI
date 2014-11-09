@@ -4,8 +4,8 @@ package hello;
  * Created by Michael on 11/5/2014.
  */
 public class CheckPoint {
-    double _latitude;
-    double _longitude;
+    private double _latitude;
+    private double _longitude;
 
     CheckPoint(double latitude, double longitude)
     {
@@ -13,8 +13,8 @@ public class CheckPoint {
         _longitude = longitude;
     }
 
-    double GetLatitude(){return _latitude;}
-    double GetLongitude(){return _longitude;}
-    void ChangeLatitude(double latitude){_latitude = latitude;}
-    void ChangeLongitude(double longitude){_longitude= longitude;}
+    public double GetLatitude(){return _latitude;}
+    public double GetLongitude(){return _longitude;}
+    public void ChangeLatitude(double latitude){_latitude = latitude;}
+    public void ChangeLongitude(double longitude){_longitude= longitude;}
 }

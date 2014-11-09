@@ -6,14 +6,14 @@ import java.util.ArrayList;
  * Created by Michael on 11/5/2014.
  */
 public class Race {
-    String _raceName;
-    String _raceType;
-    String _location;
-    String _password;
-    String _managerPassword;
-    ArrayList<CheckPoint> _checkPoints;
+    private String _raceName;
+    private String _raceType;
+    private String _location;
+    private String _password;
+    private String _managerPassword;
+    private ArrayList<CheckPoint> _checkPoints;
 
-    Race(String raceName,
+    public Race(String raceName,
          String raceType,
          String location,
          String password,

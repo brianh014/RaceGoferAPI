@@ -4,19 +4,19 @@ package hello;
  * Created by Michael on 11/8/2014.
  */
 public class RaceInformation {
-    String raceName;
-    String raceType;
-    String location;
+    private final String raceName;
+    private final String raceType;
+    private final String location;
 
-    RaceInformation(String raceName, String raceType, String location)
+    public RaceInformation(String raceName, String raceType, String location)
     {
         this.raceName = raceName;
         this.raceType = raceType;
         this.location = location;
     }
 
-    String GetRaceName(){return raceName;}
-    String GetRaceType(){return raceType;}
-    String GetLocation(){return location;}
+    public String getRaceName(){return raceName;}
+    public String getRaceType(){return raceType;}
+    public String getLocation(){return location;}
 
 }
