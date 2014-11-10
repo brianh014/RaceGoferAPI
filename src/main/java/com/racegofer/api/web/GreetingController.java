@@ -1,10 +1,10 @@
-package hello;
+package com.racegofer.api.web;
 
 import java.sql.*;
 import java.util.concurrent.atomic.AtomicLong;
-import org.springframework.stereotype.Controller;
+
+import com.racegofer.api.domain.Greeting;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 

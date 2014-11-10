@@ -1,4 +1,4 @@
-package hello;
+package com.racegofer.api.domain;
 
 public class Greeting {
 

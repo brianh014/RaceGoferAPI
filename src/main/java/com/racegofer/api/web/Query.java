@@ -1,4 +1,4 @@
-package hello;
+package com.racegofer.api.web;
 
 import java.sql.*;
 

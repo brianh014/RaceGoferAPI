@@ -1,4 +1,4 @@
-package hello;
+package com.racegofer.api.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

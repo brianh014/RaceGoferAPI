@@ -1,4 +1,4 @@
-package hello;
+package com.racegofer.api.domain;
 
 /**
  * Created by Michael on 11/5/2014.

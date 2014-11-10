@@ -1,5 +1,6 @@
-package hello;
+package com.racegofer.api.web;
 
+import com.racegofer.api.domain.RaceInformation;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;

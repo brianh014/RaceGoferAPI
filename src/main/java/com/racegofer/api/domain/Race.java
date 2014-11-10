@@ -1,4 +1,6 @@
-package hello;
+package com.racegofer.api.domain;
+
+import com.racegofer.api.domain.CheckPoint;
 
 import java.util.ArrayList;
 
