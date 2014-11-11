@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 
 @RestController
-public class API_UserRaces {
+public class API_UserRaces { //he just wants the race and race id
 
     @RequestMapping("/UserRaces")
     public RaceInformation userRaces(@RequestParam(value="userName", required=false, defaultValue="") String userName) {

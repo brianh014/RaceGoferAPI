@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class API_JoinRace {
 
     @RequestMapping("/JoinRace")
-    public int JoinRace(
+    public String JoinRace(
             @RequestParam(value="userName", required=true) String userName,
             @RequestParam(value="raceId", required=true) String raceId,
             @RequestParam(value="password", required=true) String password,
@@ -26,6 +26,6 @@ public class API_JoinRace {
         System.out.println(3);
         int result = query.ExecuteUpdate(queryString);
         System.out.println(4);
-        return result;
+        return "Race was Joined"; //only returns positive, needs to be edited
     }
 }

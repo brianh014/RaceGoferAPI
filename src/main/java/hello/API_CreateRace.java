@@ -34,7 +34,7 @@ public class API_CreateRace {
             @RequestParam(value="raceName", required=true) String raceName,
             @RequestParam(value="raceType", required=true) String raceType,
             @RequestParam(value="raceLocation", required=true) String raceLocation,
-            @RequestParam(value="racePassword", required=true) String racePassword,
+            @RequestParam(value="racePassword", required=false, defaultValue = "") String racePassword,
             @RequestParam(value="managerPassword", required=true) String managerPassword,
             @RequestParam(value="checkPoints", required=true) String checkPointsString
             )
@@ -44,12 +44,6 @@ public class API_CreateRace {
             connect = DriverManager
                     .getConnection("jdbc:mysql://productiondb.covqdeip5d2j.us-west-2.rds.amazonaws.com/RaceGofer?user=admin&password=howdyteam1");
             statement = connect.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM RaceGofer.UserRunsRace;");
-            ArrayList<Integer> raceIds = new ArrayList<Integer>();
-            while(resultSet.next())
-            {
-                raceIds.add(resultSet.getInt("RaceId"));
-            }
             UUID guid = UUID.randomUUID();
 
             String query = "INSERT INTO `RaceGofer`.`Race` VALUES(" +
@@ -84,6 +78,15 @@ public class API_CreateRace {
                 statement.executeUpdate(query);
 
             }
+
+            query = "CREATE TABLE `RaceGofer`.`LiveCoordinatesFor" + guid.toString() + "` (" +
+                    "`CoordinateNumber` INT NOT NULL AUTO_INCREMENT," +
+                    "`UserName` VARCHAR(45) NULL," +
+                    "`Latitude` FLOAT(10,6) NULL," +
+                    "`Longitude` FLOAT(10,6) NULL," +
+                    "PRIMARY KEY (`CoordinateNumber`));";
+            System.out.println(query);
+            statement.executeUpdate(query);
 
             return "Your race was created";
 

@@ -7,7 +7,7 @@
     <groupId>com.racegofer</groupId>
     <artifactId>RaceGoferServer</artifactId>
     <version>0.1a</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
