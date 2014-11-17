@@ -1,6 +1,7 @@
 package com.racegofer.api.web;
 
 import com.racegofer.api.domain.RaceInformation;
+import com.racegofer.api.domain.RaceNameAndId;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,24 +18,22 @@ import java.util.ArrayList;
 public class API_UserRaces { //he just wants the race and race id
 
     @RequestMapping("/UserRaces")
-    public RaceInformation userRaces(@RequestParam(value="userName", required=false, defaultValue="") String userName) {
+    public ArrayList<RaceNameAndId> userRaces(@RequestParam(value="userName", required=false, defaultValue="") String userName) {
         try {
             Query query = new Query();
-            String queryString = "SELECT * FROM RaceGofer.Race" +
+            String queryString = "SELECT raceId, title FROM RaceGofer.Race" +
                     " WHERE RaceID IN" +
                     " (SELECT RaceID FROM RaceGofer.`UserRunsRace`" +
                     " WHERE UserID = '" + userName + "');";
             ResultSet resultSet = query.ExecuteQuery(queryString);
-            ArrayList<RaceInformation> raceInformations = new ArrayList<RaceInformation>();
+            ArrayList<RaceNameAndId> raceNameAndIds = new ArrayList<RaceNameAndId>();
             while (resultSet.next()) {
-                raceInformations.add(new RaceInformation(
-                        resultSet.getString("Title"),
-                        resultSet.getString("Type"),
-                        resultSet.getString("Location")
+                raceNameAndIds.add(new RaceNameAndId(
+                        resultSet.getString("title"),
+                        resultSet.getString("raceId")
                 ));
             }
-            RaceInformation raceInformation = new RaceInformation("me","you","us");
-            return raceInformation;
+            return raceNameAndIds;
         } catch (SQLException e) {
             e.printStackTrace();
         }catch (Exception e) {
