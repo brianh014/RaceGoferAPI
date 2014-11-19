@@ -1,5 +1,7 @@
 package com.racegofer.api.web;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,10 +17,12 @@ import java.sql.SQLException;
 public class API_UpdatePosition {
     @RequestMapping("/UpdatePosition")
     public String getRaceInfo(@RequestParam(value="raceId", required=false, defaultValue="") String raceId,
-                              @RequestParam(value="userName", required=false, defaultValue="") String userName,
+                              //@RequestParam(value="userName", required=false, defaultValue="") String userName,
                               @RequestParam(value="latitude", required=false, defaultValue="") String latitude,
                               @RequestParam(value="longitude", required=false, defaultValue="") String longitude) {
         try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String userName = auth.getName(); //get logged in username
             Query query = new Query();
             String queryString = "INSERT INTO `RaceGofer`.`LiveCoordinatesFor" + raceId + "`(`UserName`, `Latitude`, `Longitude`) VALUES(" +
                     "'" + userName + "', " +
