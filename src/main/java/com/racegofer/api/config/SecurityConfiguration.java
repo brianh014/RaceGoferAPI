@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
@@ -37,21 +38,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().httpBasic();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public JdbcUserDetailsManager jdbcUserDetailsManager(){
         JdbcUserDetailsManager userDetailsService = new JdbcUserDetailsManager();
         userDetailsService.setDataSource(dataSource);
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-
-        auth.userDetailsService(userDetailsService).passwordEncoder(encoder);
-        auth.jdbcAuthentication().dataSource(dataSource);
-
         if(!userDetailsService.userExists("user")) {
             List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
             authorities.add(new SimpleGrantedAuthority("USER"));
-            User userDetails = new User("user", encoder.encode("password"), authorities);
-
+            User userDetails = new User("user", passwordEncoder().encode("password"), authorities);
             userDetailsService.createUser(userDetails);
         }
+        return userDetailsService;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+        auth.jdbcAuthentication().dataSource(dataSource);
     }
 }
