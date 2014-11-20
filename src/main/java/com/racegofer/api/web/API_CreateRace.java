@@ -86,7 +86,7 @@ public class API_CreateRace {
             System.out.println(query);
             statement.executeUpdate(query);
 
-            return "Your race was created";
+            return guid.toString();
 
 
         } catch (SQLException e) {
@@ -102,6 +102,6 @@ public class API_CreateRace {
         // e.printStackTrace();
         //}
 
-        return "Your race was not created";
+        return "ERROR";
     }
 }
