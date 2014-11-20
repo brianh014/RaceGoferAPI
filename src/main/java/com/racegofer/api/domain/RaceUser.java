@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="users")
-public class User {
+public class RaceUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +19,26 @@ public class User {
     private String lastName;
     private String phoneNumber;
     private String email;
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public Long getUserID(){
         return userID;
@@ -58,7 +78,7 @@ public class User {
     @JsonIgnore
     private boolean enabled;
 
-    public User(){
+    public RaceUser(){
         //needed for JPA
     }
 }
