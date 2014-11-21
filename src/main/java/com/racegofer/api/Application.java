@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
-@EntityScan
+@EntityScan(basePackages = "com.racegofer.api.domain")
 @EnableJpaRepositories
 public class Application {
     public static void main(String[] args) {
