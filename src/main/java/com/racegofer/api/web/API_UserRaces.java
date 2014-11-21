@@ -1,10 +1,8 @@
 package com.racegofer.api.web;
 
-import com.racegofer.api.domain.RaceInformation;
-import com.racegofer.api.domain.RaceNameAndId;
+import com.racegofer.api.domain.UserRaceSmallDetail;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,23 +18,34 @@ import java.util.ArrayList;
 public class API_UserRaces { //he just wants the race and race id
 
     @RequestMapping("/UserRaces")
-    public ArrayList<RaceNameAndId> userRaces(
+    public ArrayList<UserRaceSmallDetail> userRaces(
             //@RequestParam(value="userName", required=false, defaultValue="") String userName
     ) {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String userName = auth.getName(); //get logged in username
             Query query = new Query();
-            String queryString = "SELECT raceId, title FROM RaceGofer.Race" +
+            /*String queryString = "SELECT raceId, title FROM RaceGofer.Race" +
                     " WHERE RaceID IN" +
                     " (SELECT RaceID FROM RaceGofer.`UserRunsRace`" +
                     " WHERE UserID = '" + userName + "');";
+            */
+            String queryString = "SELECT t.raceId, t.title, u.type "
+                                + "FROM RaceGofer.Race AS t "
+                                + "INNER JOIN "
+                                + "(	SELECT RaceID, "
+                                + "            type "
+                                + "     FROM RaceGofer.`UserRunsRace` "
+                                + "     WHERE UserID = '" + userName + "') AS u "
+                                + "ON t.raceID = u.raceID";
+
             ResultSet resultSet = query.ExecuteQuery(queryString);
-            ArrayList<RaceNameAndId> raceNameAndIds = new ArrayList<RaceNameAndId>();
+            ArrayList<UserRaceSmallDetail> raceNameAndIds = new ArrayList<UserRaceSmallDetail>();
             while (resultSet.next()) {
-                raceNameAndIds.add(new RaceNameAndId(
+                raceNameAndIds.add(new UserRaceSmallDetail(
                         resultSet.getString("title"),
-                        resultSet.getString("raceId")
+                        resultSet.getString("raceId"),
+                        resultSet.getString("type")
                 ));
             }
             return raceNameAndIds;

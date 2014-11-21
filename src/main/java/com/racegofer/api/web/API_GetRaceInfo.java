@@ -1,5 +1,6 @@
 package com.racegofer.api.web;
 
+import com.racegofer.api.domain.CheckPoint;
 import com.racegofer.api.domain.RaceInformation;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,17 +24,22 @@ public class API_GetRaceInfo { //return more information
                     "WHERE RaceId = '" + raceId + "';";
             System.out.println(queryString);
             ResultSet resultSet = query.ExecuteQuery(queryString);
-            if (resultSet.next()) {
-                return new RaceInformation(
-                        resultSet.getString("Title"),
-                        resultSet.getString("Type"),
-                        resultSet.getString("Location")
-                );
-            }
-            else
+            resultSet.next();
+            String title = resultSet.getString("Title");
+            String type = resultSet.getString("Type");
+            String location = resultSet.getString("Location");
+            boolean raceHasPassword = resultSet.getString("password") != "";
+            queryString = "SELECT * FROM RaceGofer.`CoordinatesFor"+ raceId + "`";
+            resultSet = query.ExecuteQuery(queryString);
+            ArrayList<CheckPoint> checkPoints = new ArrayList<CheckPoint>();
+            while(resultSet.next())
             {
-                return new RaceInformation("","","");
+                checkPoints.add(new CheckPoint(
+                        resultSet.getDouble("Latitude"),
+                        resultSet.getDouble("Longitutde")
+                ));
             }
+            return new RaceInformation(title, type, location, checkPoints, raceHasPassword);
         } catch (SQLException e) {
             e.printStackTrace();
         }catch (Exception e) {

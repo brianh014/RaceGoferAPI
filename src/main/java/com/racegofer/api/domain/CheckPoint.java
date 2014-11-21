@@ -4,17 +4,22 @@ package com.racegofer.api.domain;
  * Created by Michael on 11/5/2014.
  */
 public class CheckPoint {
-    private double _latitude;
-    private double _longitude;
+    private double latitude;
+    private double longitude;
 
-    CheckPoint(double latitude, double longitude)
+    public CheckPoint(double latitude, double longitude)
     {
-        _latitude = latitude;
-        _longitude = longitude;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
-    public double GetLatitude(){return _latitude;}
-    public double GetLongitude(){return _longitude;}
-    public void ChangeLatitude(double latitude){_latitude = latitude;}
-    public void ChangeLongitude(double longitude){_longitude= longitude;}
+    public double GetLatitude(){return latitude;}
+    public double GetLongitude(){return longitude;}
+    public void ChangeLatitude(double latitude){
+        this.latitude = latitude;}
+    public void ChangeLongitude(double longitude){
+        this.longitude = longitude;}
+
+    public double getLatitude(){return latitude;}
+    public double getLongitude(){return longitude;}
 }
