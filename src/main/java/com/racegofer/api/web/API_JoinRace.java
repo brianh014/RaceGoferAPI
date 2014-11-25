@@ -32,17 +32,22 @@ public class API_JoinRace {
     public int JoinRace(
             //@RequestParam(value="userName", required=true) String userName,
             @RequestParam(value="raceId", required=true) String raceId,
-            @RequestParam(value="password", required=true) String password,
+            @RequestParam(value="password", required=false, defaultValue = "") String password,
             @RequestParam(value="userType", required=true) String userType)
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userName = auth.getName(); //get logged in username
 
-        String queryString = "SELECT password FROM RaceGofer.Race "
+        String queryString = "SELECT password, managerPassword FROM RaceGofer.Race "
                 + "WHERE raceId = '" + raceId +  "'";
         SqlRowSet resultSet = jdbcTemplate.queryForRowSet(queryString);
         resultSet.next();
-        String actualPassword = resultSet.getString("password");
+        String actualPassword = "";
+        System.out.println("UserType = " + userType);
+        if(userType.equals("Manager"))
+            actualPassword = resultSet.getString("managerPassword");
+        else
+            actualPassword = resultSet.getString("password");
         System.out.println("Password = " + password);
         System.out.println("Actual Password = " + actualPassword);
         if(!password.equals(actualPassword))

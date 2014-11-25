@@ -28,7 +28,7 @@ public class API_GetRaceInfo { //return more information
             String title = resultSet.getString("Title");
             String type = resultSet.getString("Type");
             String location = resultSet.getString("Location");
-            boolean raceHasPassword = resultSet.getString("password") != "";
+            boolean raceHasPassword = !resultSet.getString("password").equals("");
             queryString = "SELECT * FROM RaceGofer.`CoordinatesFor"+ raceId + "`";
             resultSet = query.ExecuteQuery(queryString);
             ArrayList<CheckPoint> checkPoints = new ArrayList<CheckPoint>();
