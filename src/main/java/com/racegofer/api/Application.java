@@ -15,8 +15,8 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan
 @EntityScan
+@ComponentScan
 @EnableJpaRepositories
 public class Application {
     public static void main(String[] args) {

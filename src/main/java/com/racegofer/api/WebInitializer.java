@@ -1,4 +1,4 @@
-package com.racegofer.api.config;
+package com.racegofer.api;
 
 import com.racegofer.api.Application;
 import org.springframework.boot.builder.SpringApplicationBuilder;
