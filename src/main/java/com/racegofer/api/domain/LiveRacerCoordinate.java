@@ -8,11 +8,11 @@ public class LiveRacerCoordinate {
     private final double longitude;
     private final double latitude;
 
-    public LiveRacerCoordinate(String userName, double longitude, double latitude)
+    public LiveRacerCoordinate(String userName, double latitude, double longitude)
     {
         this.userName = userName;
-        this.longitude = longitude;
         this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getUserName(){return userName;}
