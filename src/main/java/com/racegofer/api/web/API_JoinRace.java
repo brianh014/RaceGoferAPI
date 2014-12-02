@@ -33,7 +33,8 @@ public class API_JoinRace {
             //@RequestParam(value="userName", required=true) String userName,
             @RequestParam(value="raceId", required=true) String raceId,
             @RequestParam(value="password", required=false, defaultValue = "") String password,
-            @RequestParam(value="userType", required=true) String userType)
+            @RequestParam(value="userType", required=true) String userType,
+            @RequestParam(value="hidden", required=true) boolean hidden)
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userName = auth.getName(); //get logged in username
@@ -53,8 +54,12 @@ public class API_JoinRace {
         if(!password.equals(actualPassword))
             return 0;
 
-        queryString = "INSERT INTO `RaceGofer`.`UserRunsRace` (`RaceID`, `UserID`, `Type`) VALUES ('"
-                + raceId + "', '" + userName + "', '" + userType + "');";
+        String hiddenString = "false";
+        if(hidden)
+            hiddenString = "true";
+
+        queryString = "INSERT INTO `RaceGofer`.`UserRunsRace` (`RaceID`, `UserID`, `Type`, `hidden`) VALUES ('"
+                + raceId + "', '" + userName + "', '" + userType + "', '" + hiddenString + "');";
 
         int result = jdbcTemplate.update(queryString);
         return result; //only returns positive, needs to be edited
