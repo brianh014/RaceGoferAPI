@@ -64,26 +64,31 @@ public class API_GetRacerCoordinates {
         }catch(Exception e){
         }
 
-        if(type == "Participant")
+        if(type == "Participant" | type == "Spectator")
             queryString = "Select l.CoordinateNumber, "
             + "l.UserName, "
             + "k.firstName, "
             + "k.lastName, "
             + "l.Latitude, "
-            + "l.Longitude "
+            + "l.Longitude, "
+            + "l.Timestamp, "
+            + "l.type "
             + "FROM users as k "
             + "Inner join "
             + "( "
             + "Select w.CoordinateNumber, "
             +    "w.UserName, "
             +    "w.Latitude, "
-            +    "w.Longitude "
+            +    "w.Longitude, "
+            +    "w.Timestamp, "
+            +    "v.type "
             + "FROM RaceGofer.`UserRunsRace` as v "
             + "Inner Join ( "
             +    "Select t.CoordinateNumber, "
             +    "t.UserName, "
             +    "t.Latitude, "
-            +    "t.Longitude "
+            +    "t.Longitude, "
+            +    "t.TimeStamp "
             + "FROM RaceGofer.`LiveCoordinatesFor" + raceId + "` AS t "
             + "Inner Join ( "
             +    "SELECT max(CoordinateNumber) as CoordinateNumber "
@@ -105,20 +110,25 @@ public class API_GetRacerCoordinates {
             + "k.firstName, "
             + "k.lastName, "
             + "l.Latitude, "
-            + "l.Longitude "
+            + "l.Longitude, "
+            + "l.Timestamp, "
+            + "l.type "
             + "FROM users as k "
             + "Inner join "
             + "( "
             + "Select w.CoordinateNumber, "
             +    "w.UserName, "
             +    "w.Latitude, "
-            +    "w.Longitude "
+            +    "w.Longitude, "
+            +    "w.Timestamp, "
+            +    "v.type "
             + "FROM RaceGofer.`UserRunsRace` as v "
             + "Inner Join ( "
             +    "Select t.CoordinateNumber, "
             +    "t.UserName, "
             +    "t.Latitude, "
-            +    "t.Longitude "
+            +    "t.Longitude, "
+            +    "t.TimeStamp "
             + "FROM RaceGofer.`LiveCoordinatesFor" + raceId + "` AS t "
             + "Inner Join ( "
             +    "SELECT max(CoordinateNumber) as CoordinateNumber "
@@ -146,7 +156,9 @@ public class API_GetRacerCoordinates {
                     resultSet.getString("firstName"),
                     resultSet.getString("lastName"),
                     resultSet.getDouble("Latitude"),
-                    resultSet.getDouble("Longitude")
+                    resultSet.getDouble("Longitude"),
+                    resultSet.getString("type"),
+                    resultSet.getTimestamp("Timestamp")
             ));
         }
 

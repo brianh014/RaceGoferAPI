@@ -44,7 +44,7 @@ public class API_CreateRace {
             statement = connect.createStatement();
             UUID guid = UUID.randomUUID();
 
-            String query = "INSERT INTO `RaceGofer`.`Race` VALUES(" +
+            String query = "INSERT INTO `RaceGofer`.`Race` (`raceID`, `title`, `type`, `location`, `password`, `managerPassword`) VALUES(" +
                     "'" + guid.toString() + "', " +
                     "'" + raceName + "'," +
                     "'" + raceType + "'," +
@@ -82,6 +82,7 @@ public class API_CreateRace {
                     "`UserName` VARCHAR(45) NULL," +
                     "`Latitude` FLOAT(10,6) NULL," +
                     "`Longitude` FLOAT(10,6) NULL," +
+                    "`Timestamp` TIMESTAMP NULL DEFAULT NOW()," +
                     "PRIMARY KEY (`CoordinateNumber`));";
             System.out.println(query);
             statement.executeUpdate(query);
