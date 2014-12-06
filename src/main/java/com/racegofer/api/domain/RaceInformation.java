@@ -11,12 +11,14 @@ public class RaceInformation {
     private final String _location;
     private final ArrayList<CheckPoint> _checkPoints;
     private final boolean _raceHasPassword;
+    private final String _raceHasStarted;
 
     public RaceInformation(String raceName,
                            String raceType,
                            String location,
                            ArrayList<CheckPoint> checkpoints,
-                           boolean raceHasPassword
+                           boolean raceHasPassword,
+                           String raceHasStarted
     )
     {
         this._raceName = raceName;
@@ -24,6 +26,7 @@ public class RaceInformation {
         this._location = location;
         this._checkPoints = checkpoints;
         this._raceHasPassword = raceHasPassword;
+        this._raceHasStarted = raceHasStarted;
     }
 
     public String getRaceName(){return _raceName;}
@@ -31,5 +34,6 @@ public class RaceInformation {
     public String getLocation(){return _location;}
     public ArrayList<CheckPoint> getCheckPoints(){return _checkPoints;}
     public boolean getRaceHasPassword(){return _raceHasPassword;}
+    public String getRaceHasStarted(){return _raceHasStarted;}
 
 }

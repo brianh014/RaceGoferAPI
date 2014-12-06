@@ -28,6 +28,7 @@ public class API_GetRaceInfo { //return more information
             String title = resultSet.getString("Title");
             String type = resultSet.getString("Type");
             String location = resultSet.getString("Location");
+            String raceStarted = resultSet.getString("raceStarted");
             boolean raceHasPassword = !resultSet.getString("password").equals("");
             queryString = "SELECT * FROM RaceGofer.`CoordinatesFor"+ raceId + "`";
             resultSet = query.ExecuteQuery(queryString);
@@ -39,7 +40,7 @@ public class API_GetRaceInfo { //return more information
                         resultSet.getDouble("Longitutde")
                 ));
             }
-            return new RaceInformation(title, type, location, checkPoints, raceHasPassword);
+            return new RaceInformation(title, type, location, checkPoints, raceHasPassword, raceStarted);
         } catch (SQLException e) {
             e.printStackTrace();
         }catch (Exception e) {

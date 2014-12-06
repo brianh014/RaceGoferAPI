@@ -24,7 +24,14 @@ public class API_UpdatePosition {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String userName = auth.getName(); //get logged in username
             Query query = new Query();
-            String queryString = "INSERT INTO `RaceGofer`.`LiveCoordinatesFor" + raceId + "`(`UserName`, `Latitude`, `Longitude`) VALUES(" +
+
+            String queryString = "SELECT * FROM `RaceGofer`.`Race`" +
+                    "WHERE RaceId = '" + raceId + "';";
+            ResultSet resultSet = query.ExecuteQuery(queryString);
+            resultSet.next();
+            if(resultSet.getString("raceStarted") == "false")
+                return "Race has not started";
+            queryString = "INSERT INTO `RaceGofer`.`LiveCoordinatesFor" + raceId + "`(`UserName`, `Latitude`, `Longitude`) VALUES(" +
                     "'" + userName + "', " +
                     "'" + latitude + "', " +
                     "'" + longitude + "');";
