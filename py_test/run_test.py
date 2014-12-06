@@ -57,7 +57,6 @@ def race_thread(user_tuple, start_tuple, checkpoints):
         time.sleep(3)
 
 if __name__ == '__main__':
-    join_race()
     start_coords = []
     auths = []
     checks = []
