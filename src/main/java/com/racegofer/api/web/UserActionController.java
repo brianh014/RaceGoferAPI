@@ -64,6 +64,7 @@ public class UserActionController {
         user.setEmail(email);
         user.setFirstName(firstName);
         user.setLastName(lastName);
+        user.setPhoneNumber(phoneNumber);
 
         return new ResponseEntity<String>("User "+userName+" has been created",HttpStatus.OK);
     }
