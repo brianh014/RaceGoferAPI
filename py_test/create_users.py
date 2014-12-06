@@ -5,6 +5,7 @@ import requests as req
 USER_STRING = "user"
 USER_PASS = "shitty_password"
 BASE_URL = "http://racegofer.com/api/"
+USER_NUM = 20
 
 
 def create_users(num_users):
@@ -25,4 +26,4 @@ def create_users(num_users):
 
 
 if __name__ == '__main__':
-    create_users(20)
+    create_users(USER_NUM)
