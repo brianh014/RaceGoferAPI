@@ -5,8 +5,8 @@ import requests as req
 import time
 import threading, signal, sys, random
 
-RACE_ID_TO_JOIN = "91632a50-1281-47f4-b388-f03e2205714d"
-RACE_PASSWORD = "howdy"
+RACE_ID_TO_JOIN = "52b2c25e-d9c5-48c4-9468-31bf5c1b0001"
+RACE_PASSWORD = "botsrule"
 BASE_LAT = 30.6014
 BASE_LONG = -96.3144
 DELTA = 0.0001
