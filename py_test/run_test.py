@@ -3,7 +3,7 @@ __author__ = 'Miles'
 from create_users import BASE_URL, USER_STRING, USER_PASS, USER_NUM
 import requests as req
 import time
-import threading, signal, sys, random
+import threading, random
 
 RACE_ID_TO_JOIN = "52b2c25e-d9c5-48c4-9468-31bf5c1b0001"
 RACE_PASSWORD = "botsrule"
@@ -21,7 +21,7 @@ def join_race():
     for i in range(USER_NUM):
         payload = {
             "raceId": RACE_ID_TO_JOIN,
-            "password": "howdy",
+            "password": RACE_PASSWORD,
             "userType": "Participant",
             "hidden": "false",
         }
@@ -57,6 +57,7 @@ def race_thread(user_tuple, start_tuple, checkpoints):
         time.sleep(3)
 
 if __name__ == '__main__':
+    join_race()
     start_coords = []
     auths = []
     checks = []
