@@ -5,11 +5,11 @@ import requests as req
 USER_STRING = "user"
 USER_PASS = "shitty_password"
 BASE_URL = "http://racegofer.com/api/"
-USER_NUM = 20
+USER_NUM = 100
 
 
 def create_users(num_users):
-    for i in range(num_users):
+    for i in range(20, num_users):
         username = USER_STRING + str(i)
         print "Creating user "+username
         payload = {

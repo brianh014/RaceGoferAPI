@@ -1,15 +1,17 @@
 __author__ = 'Miles'
 
-from create_users import BASE_URL, USER_STRING, USER_PASS, USER_NUM
+from create_users import BASE_URL, USER_STRING, USER_PASS
 import requests as req
 import time
-import threading, random
+import threading
+import random
 
 RACE_ID_TO_JOIN = "52b2c25e-d9c5-48c4-9468-31bf5c1b0001"
 RACE_PASSWORD = "botsrule"
 BASE_LAT = 30.6014
 BASE_LONG = -96.3144
 DELTA = 0.0001
+USER_NUM = 100
 
 class CheckPoint(object):
     def __init__(self, lat, longi):
@@ -57,6 +59,7 @@ def race_thread(user_tuple, start_tuple, checkpoints):
         time.sleep(3)
 
 if __name__ == '__main__':
+    join_race()
     start_coords = []
     auths = []
     checks = []
